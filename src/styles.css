@@ -1,0 +1,140 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-display: "Fraunces", Georgia, serif;
+  --font-sans: "Manrope", system-ui, sans-serif;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-lagoon: var(--lagoon);
+  --color-deep: var(--deep);
+  --color-deep-foreground: var(--deep-foreground);
+  --color-sand: var(--sand);
+  --color-sunset: var(--sunset);
+  --color-whatsapp: var(--whatsapp);
+  --color-whatsapp-foreground: var(--whatsapp-foreground);
+}
+
+:root {
+  --radius: 0.75rem;
+  /* Dune sand */
+  --background: oklch(0.975 0.012 85);
+  --foreground: oklch(0.23 0.03 230);
+  --card: oklch(0.99 0.006 85);
+  --card-foreground: oklch(0.23 0.03 230);
+  --popover: oklch(0.99 0.006 85);
+  --popover-foreground: oklch(0.23 0.03 230);
+  /* Deep lagoon */
+  --primary: oklch(0.42 0.08 210);
+  --primary-foreground: oklch(0.98 0.01 85);
+  --secondary: oklch(0.93 0.022 82);
+  --secondary-foreground: oklch(0.25 0.03 230);
+  --muted: oklch(0.94 0.016 82);
+  --muted-foreground: oklch(0.48 0.025 230);
+  --accent: oklch(0.7 0.15 55);
+  --accent-foreground: oklch(0.2 0.03 40);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.88 0.02 82);
+  --input: oklch(0.88 0.02 82);
+  --ring: oklch(0.55 0.1 205);
+  --lagoon: oklch(0.72 0.11 195);
+  --deep: oklch(0.2 0.035 225);
+  --deep-foreground: oklch(0.96 0.015 85);
+  --sand: oklch(0.9 0.04 82);
+  --sunset: oklch(0.7 0.15 55);
+  --whatsapp: oklch(0.6 0.15 150);
+  --whatsapp-foreground: oklch(0.99 0 0);
+  --shadow-soft: 0 20px 40px -24px oklch(0.2 0.035 225 / 0.35);
+  --scrim: linear-gradient(180deg, oklch(0.2 0.035 225 / 0.15) 0%, oklch(0.2 0.035 225 / 0.35) 45%, oklch(0.2 0.035 225 / 0.88) 100%);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.02em; }
+}
+
+@utility scrim { background: var(--scrim); }
+@utility shadow-soft { box-shadow: var(--shadow-soft); }
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+@keyframes reveal-up { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes slow-zoom { from { transform: scale(1.08); } to { transform: scale(1); } }
+@utility animate-reveal { animation: reveal-up 0.8s cubic-bezier(.2,.7,.2,1) both; }
+@utility animate-slow-zoom { animation: slow-zoom 2.4s cubic-bezier(.2,.7,.2,1) both; }
+
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+.reveal.is-visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .animate-reveal, .animate-slow-zoom { animation: none; }
+}
+
+/* ---- Scroll motion (progressive: scroll-driven where supported) ---- */
+.reveal { filter: blur(6px); transform: translateY(40px) scale(.98); transition: opacity 1s ease, transform 1.1s cubic-bezier(.16,1,.3,1), filter 1s ease; }
+.reveal.is-visible { filter: none; }
+.reveal img { clip-path: inset(12% 0 0 0 round 1rem); transition: clip-path 1.3s cubic-bezier(.16,1,.3,1) .1s, transform .7s ease; }
+.reveal.is-visible img { clip-path: inset(0 0 0 0 round 0); }
+
+.scroll-progress { position: fixed; inset: 0 0 auto 0; height: 3px; z-index: 60; transform-origin: 0 50%; transform: scaleX(0); background: var(--accent); pointer-events: none; }
+
+@supports (animation-timeline: view()) {
+  @keyframes progress-grow { to { transform: scaleX(1); } }
+  .scroll-progress { animation: progress-grow linear both; animation-timeline: scroll(root); }
+
+  @keyframes parallax-img { from { transform: translateY(-8%) scale(1.18); } to { transform: translateY(8%) scale(1.18); } }
+  .reveal a img, .parallax img { animation: parallax-img linear both; animation-timeline: view(); }
+
+  @keyframes hero-out { to { transform: translateY(30%) scale(1.1); filter: brightness(.6); } }
+  @keyframes hero-text-out { to { transform: translateY(-80px); opacity: 0; } }
+  .hero-parallax { animation: hero-out linear both; animation-timeline: scroll(root); animation-range: 0 100vh; }
+  .hero-text-parallax { animation: hero-text-out linear both; animation-timeline: scroll(root); animation-range: 0 70vh; }
+
+  @keyframes heading-in { from { letter-spacing: .08em; opacity: .2; } to { letter-spacing: -0.02em; opacity: 1; } }
+  @media (max-width: 640px) { @keyframes heading-in { from { opacity: .2; transform: translateY(16px); } to { opacity: 1; transform: none; } } }
+  .section-title { animation: heading-in linear both; animation-timeline: view(); animation-range: entry 0% cover 35%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal img { filter: none; clip-path: none; transition: none; }
+  .scroll-progress, .reveal a img, .parallax img, .hero-parallax, .hero-text-parallax, .section-title { animation: none !important; }
+}
