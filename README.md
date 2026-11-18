@@ -1,29 +1,30 @@
-# Welcome to your Lovable project
+# 🚐 Explore Tours Transfer: Versão em React
 
-This project was built with [Lovable](https://lovable.dev).
+Versão em React e TypeScript do site da Explore Tours, uma empresa de transfer executivo na Rota das Emoções (São Luís → Barreirinhas → Jericoacoara). O projeto é componentizado, com cards de passeios em layout bento, destinos e efeitos de rolagem.
 
-## Build with Lovable
+A versão estática publicada está em [site-gabriel](https://github.com/GustavoPires275/site-gabriel) · [exploretuors.netlify.app](https://exploretuors.netlify.app/)
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+## Destaques
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+- **Arquitetura em componentes** (`src/components/site`): Layout, Destinations, TourCard, BentoTourCard e ScrollFx
+- **Design system com shadcn/ui** (Radix) e Tailwind CSS v4
+- **Roteamento e SSR** com TanStack Start
+- **Qualidade de código:** TypeScript, ESLint, Prettier e Vitest
+- **Deploy no Netlify** configurado em `netlify.toml`
 
-## Development
+## Stack
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+`React 19` · `TypeScript` · `TanStack Start` · `Vite` · `Tailwind CSS v4` · `shadcn/ui` · `Vitest` · `Netlify`
 
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+## Rodar localmente
+
+```bash
+git clone https://github.com/GustavoPires275/explore-tours-transfer.git
+cd explore-tours-transfer
+npm install
 npm run dev
 ```
 
-## Built with
+---
 
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
+Desenvolvido por **Gustavo Pires**: sites, sistemas e automações para negócios reais.
